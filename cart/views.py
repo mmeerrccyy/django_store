@@ -13,9 +13,7 @@ class CartAdd(View):
         form = CartAddProductForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            cart.add(product=product,
-                     quantity=cd['quantity'],
-                     update_quantity=cd['update'])
+            cart.add(product=product, quantity=cd['quantity'], update_quantity=cd['update'])
         return redirect('cart_detail')
 
 
