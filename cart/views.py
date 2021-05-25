@@ -18,7 +18,7 @@ class CartAdd(View):
 
 
 class CartRemove(View):
-    def post(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         cart = Cart(request)
         product = get_object_or_404(Product, id=kwargs.get('product_id'))
         cart.remove(product)

@@ -125,6 +125,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-shop/migrations
-cart/migrations
+*/migrations
 media
