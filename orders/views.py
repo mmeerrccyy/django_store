@@ -1,8 +1,15 @@
-from django.shortcuts import render
-from .models import OrderItem
-from .forms import OrderCreateForm
+from django.contrib.admin.views.decorators import staff_member_required
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404
+from django.views import generic
 from django.views.generic.base import View
+from django.utils.decorators import method_decorator
+
 from cart.cart import Cart
+from .forms import OrderCreateForm
+from .models import OrderItem, Order
+from .tasks import order_created
+
 
 # Create your views here.
 
@@ -19,6 +26,7 @@ class OrderCreate(View):
                                          price=item['price'],
                                          quantity=item['quantity'])
             cart.clear()
+            order_created.delay(order.id)
             return render(request, 'orders/order/created.html',
                           {'order': order})
 
@@ -29,4 +37,32 @@ class OrderCreate(View):
             'cart': cart,
             'form': form
         }
-        return render(request, 'orders/order/created.html', context)
+        return render(request, 'orders/order/create.html', context)
+
+
+class AdminOrderDetail(View):
+    @method_decorator(staff_member_required)
+    def get(self, request, *args, **kwargs):
+        order = get_object_or_404(Order, id=kwargs.get('order_id'))
+        return render(request, 'admin/orders/order/detail.html', {'order': order})
+
+
+class OrderList(View):
+    @method_decorator(staff_member_required)
+    def get(self, request, *args, **kwargs):
+        orders = Order.objects.all()
+        return render(request, 'admin/orders/list.html', {'orders': orders})
+
+
+class AdminOrderRemove(View):
+    @method_decorator(staff_member_required)
+    def get(self, request, *args, **kwargs):
+        Order.objects.get(id=kwargs.get('order_id')).delete()
+        return HttpResponseRedirect('/orders/list/')
+
+
+class AdminOrderUpdate(generic.UpdateView):
+    model = Order
+    fields = ['first_name', 'last_name', 'email', 'address', 'postal_code', 'city']
+    template_name = 'admin/orders/order/update.html'
+

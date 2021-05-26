@@ -1,0 +1,28 @@
+{% extends "wrapper.html" %}
+{% load static %}
+{% block title %}
+    Замовлення
+{% endblock %}
+{% block content %}
+    <div id="main" class="product-list">
+        {% for order in orders %}
+            <div class="item">
+                <h3>Номер замовлення: {{ order.id }}</h3>
+                <p>Ім'я замовника: {{ order.first_name }} {{ order.last_name }}</p>
+                <p>Адреса: {{ order.address }}</p>
+                <p>Поштовий індекс: {{ order.postal_code }}</p>
+                <p>E-mail: {{ order.email }}</p>
+                <p>Сума: ${{ order.get_total_cost }}</p>
+                <a href="{% url 'admin_order_detail' order_id=order.id %}">
+                    <button>Деталі</button>
+                </a><br>
+                <a href="{% url 'admin_order_remove' order_id=order.id %}" class="btn-danger">
+                    <button>Видалити</button>
+                </a><br>
+                <a href="{% url 'admin_order_update' pk=order.id %}" class="btn-danger">
+                    <button>Редагувати</button>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
