@@ -1,0 +1,19 @@
+{% extends "wrapper.html" %}
+{% load static %}
+{% block title %}
+    {% if category %}{{ category.name }}{% else %}Замовлення{% endif %}
+{% endblock %}
+{% block content %}
+    <div id="main" class="product-list">
+        {% for order in orders %}
+            <div class="item">
+                <h3>Номер замовлення: {{ order.id }}</h3>
+                <p>Ім'я замовника: {{ order.first_name }} {{ order.last_name }}</p>
+                <p>Адреса: {{ order.address }}</p>
+                <p>Поштовий індекс: {{ order.postal_code }}</p>
+                <p>E-mail: {{ order.email }}</p>
+                <p>Сума: {{ order.get_total_cost }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

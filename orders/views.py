@@ -41,6 +41,12 @@ class OrderCreate(View):
 class AdminOrderDetail(View):
     @method_decorator(staff_member_required)
     def get(self, request, *args, **kwargs):
-        print(kwargs)
         order = get_object_or_404(Order, id=kwargs.get('order_id'))
         return render(request, 'admin/orders/order/detail.html', {'order': order})
+
+
+class OrderList(View):
+    @method_decorator(staff_member_required)
+    def get(self, request, *args, **kwargs):
+        orders = Order.objects.all()
+        return render(request, 'admin/orders/list.html', {'orders': orders})
