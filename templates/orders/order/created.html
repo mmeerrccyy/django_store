@@ -1,24 +1,9 @@
 {% extends "shop/wrapper.html" %}
 
-{% block title %}Чек{% endblock %}
+{% block title %}Дякую{% endblock %}
 
 {% block content %}
-    <h1>Чек</h1>
-    <div class="order-info">
-        <h3>Ваше замовлення</h3>
-        <ul>
-            {% for item in cart %}
-                <li>
-                    {{ item.quantity }}x {{ item.product.name }}
-                    <span>${{ item.total_price }}</span>
-                </li>
-            {% endfor %}
-        </ul>
-        <p>Загалом: ${{ cart.get_total_price }}</p>
-    </div>
-    <form action="." method="post" class="order-form">
-        {{ form.as_p }}
-        <p><input type="submit" value="Place order"></p>
-        {% csrf_token %}
-    </form>
+    <h1>Дякую</h1>
+    <p>Замовлення успішно створенно. Номер замовлення:
+        <strong>{{ order.id }}</strong>.</p>
 {% endblock %}
