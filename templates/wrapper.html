@@ -18,6 +18,9 @@
     {% else %}
         <a href="{% url 'login' %}">Я - продавець</a>
     {% endif %}
+    <form action="{% url 'search_results' %}" method="get">
+        <input name="q" type="text" placeholder="Пошук...">
+    </form>
 </div>
 <div id="subheader">
     <div class="cart">
