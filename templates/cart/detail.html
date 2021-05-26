@@ -21,7 +21,7 @@
             {% with product=item.product %}
                 <tr>
                     <td>
-                        <a href="{{ product.get_absolute_url }}">
+                        <a href="/product{{ product.get_absolute_url }}">
                             <img src="
                                 {% if product.image %}
                                     {{ product.image.url }}
@@ -47,6 +47,8 @@
     </table>
     <p class="text-right">
         <a href="{% url "product_list" %}" class="button light">Продовжити</a>
-        <a href="{% url "order_create" %}" class="button">Оплатити</a>
+        {% if cart %}
+            <a href="{% url "order_create" %}" class="button">Оплатити</a>
+        {% endif %}
     </p>
 {% endblock %}

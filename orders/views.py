@@ -1,5 +1,7 @@
 from django.contrib.admin.views.decorators import staff_member_required
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
+from django.views import generic
 from django.views.generic.base import View
 from django.utils.decorators import method_decorator
 
@@ -50,3 +52,17 @@ class OrderList(View):
     def get(self, request, *args, **kwargs):
         orders = Order.objects.all()
         return render(request, 'admin/orders/list.html', {'orders': orders})
+
+
+class AdminOrderRemove(View):
+    @method_decorator(staff_member_required)
+    def get(self, request, *args, **kwargs):
+        Order.objects.get(id=kwargs.get('order_id')).delete()
+        return HttpResponseRedirect('/orders/list/')
+
+
+class AdminOrderUpdate(generic.UpdateView):
+    model = Order
+    fields = ['first_name', 'last_name', 'email', 'address', 'postal_code', 'city']
+    template_name = 'admin/orders/order/update.html'
+
