@@ -1,0 +1,54 @@
+{% extends "wrapper.html" %}
+{% load static %}
+{% block title %}
+    Продавці
+{% endblock %}
+{% block content %}
+    <div id="main">
+        <div class="ui-menu-item">
+            <a href="{% url 'staff_create' %}"><button>Додати користувача</button></a>
+        </div>
+        <div class="staff-list">
+            {% for staff_user in staff_users %}
+                <div class="item">
+                    <h3>{{ staff_user.username }}</h3>
+                    {% if staff_user.is_superuser %}
+                        <p>Користувач є адміністратором.</p>
+                    {% endif %}
+                    {% if staff_user.first_name %}
+                        <p>{{ staff_user.first_name }}</p>
+                    {% else %}
+                        <p>Ім'я не задано.</p>
+                    {% endif %}
+                    {% if staff_user.last_name %}
+                        <p>{{ staff_user.last_name }}</p>
+                    {% else %}
+                        <p>Прізвища не задано.</p>
+                    {% endif %}
+                    {% if staff_user.email %}
+                        <p>{{ staff_user.last_name }}</p>
+                    {% else %}
+                        <p>E-Mail не вказано.</p>
+                    {% endif %}
+                    {% if staff_user.is_active %}
+                        <p>Статус користувача: активний.</p>
+                    {% else %}
+                        <p>Статус користувача: неактивний.</p>
+                    {% endif %}
+                    {% if staff_user.last_login %}
+                        <p>Останній вхід: {{ staff_user.last_login }}</p>
+                    {% else %}
+                        <p>Користувач ще не входив в аккаунт.</p>
+                    {% endif %}
+                    <p>Дата реєстрації: {{ staff_user.date_joined }}</p>
+                    <a href="{% url 'staff_update' pk=staff_user.id %}" class="btn">
+                        <button>Редагувати користувача</button>
+                    </a><br>
+                    <a href="{% url 'staff_create' %}" class="btn-danger">
+                        <button>Видалити користувача</button>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
