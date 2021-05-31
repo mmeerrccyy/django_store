@@ -1,0 +1,10 @@
+{% extends "wrapper.html" %}
+{% block title %}
+    Видалення користувача {{ object.username }}
+{% endblock %}
+{% block content %}
+    <form method="post">{% csrf_token %}
+        <p>Ви впевненні що хочете видалити користувача {{ object.username }}?</p>
+        <input type="submit" value="Так">
+    </form>
+{% endblock %}

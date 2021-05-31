@@ -1,0 +1,10 @@
+{% extends "wrapper.html" %}
+{% block title %}
+    Видалення замовлення №{{ object.id }}
+{% endblock %}
+{% block content %}
+    <form method="post">{% csrf_token %}
+        <p>Ви впевненні що хочете видалити замовлення №{{ object.id }}?</p>
+        <input type="submit" value="Так">
+    </form>
+{% endblock %}

@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic.base import View
+from django.core.paginator import Paginator
+from django.views.generic import ListView
 
 from cart.forms import CartAddProductForm
 from .models import Category, Product
@@ -10,17 +12,15 @@ from .models import Category, Product
 class ProductList(View):
 
     def get(self, request, *args, **kwargs):
-        category = None
-        category_slug = kwargs.get('category_slug')
         categories = Category.objects.all()
         products = Product.objects.filter(available=True)
-        if category_slug:
-            category = get_object_or_404(Category, slug=category_slug)
-            products = products.filter(category=category)
+        paginator = Paginator(products, 2)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
         context = {
-            'category': category,
             'categories': categories,
             'products': products,
+            'page_obj': page_obj
         }
         return render(request, 'shop/product/list.html', context)
 
@@ -32,10 +32,14 @@ class ProductCategory(View):
         products = Product.objects.filter(available=True)
         category = get_object_or_404(Category, slug=kwargs.get('category_slug'))
         products = products.filter(category=category)
+        paginator = Paginator(products, 2)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
         context = {
             'category': category,
             'products': products,
             'categories': categories,
+            'page_obj': page_obj
         }
         return render(request, 'shop/product/list.html', context)
 

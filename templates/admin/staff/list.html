@@ -1,15 +1,15 @@
 {% extends "wrapper.html" %}
 {% load static %}
 {% block title %}
-    Продавці
+    Користувачі
 {% endblock %}
 {% block content %}
     <div id="main">
         <div class="ui-menu-item">
-            <a href="{% url 'staff_create' %}"><button>Додати користувача</button></a>
+            {#            <a href="{% url 'staff_create' %}"><button>Додати користувача</button></a>#}
         </div>
         <div class="staff-list">
-            {% for staff_user in staff_users %}
+            {% for staff_user in page_obj %}
                 <div class="item">
                     <h3>{{ staff_user.username }}</h3>
                     {% if staff_user.is_superuser %}
@@ -44,11 +44,27 @@
                     <a href="{% url 'staff_update' pk=staff_user.id %}" class="btn">
                         <button>Редагувати користувача</button>
                     </a><br>
-                    <a href="{% url 'staff_create' %}" class="btn-danger">
-                        <button>Видалити користувача</button>
+                    <a href="{% url 'staff_delete' pk=staff_user.id %}" class="btn-danger">
+                    <button>Видалити користувача</button>
                     </a>
                 </div>
             {% endfor %}
+        </div>
+        <div class="pagination">
+            <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; На початок</a>
+            <a href="?page={{ page_obj.previous_page_number }}">Попередня</a>
+        {% endif %}
+                <span class="current">
+            Сторінка {{ page_obj.number }} з {{ page_obj.paginator.num_pages }}.
+        </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">Наступна</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">Остання &raquo;</a>
+                {% endif %}
+            </span>
         </div>
     </div>
 {% endblock %}
