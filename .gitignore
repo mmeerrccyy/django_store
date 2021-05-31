@@ -131,3 +131,4 @@ media
 /orders/migrations/
 /search/migrations/
 /shop/migrations/
+/staff/migrations/

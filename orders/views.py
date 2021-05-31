@@ -1,4 +1,5 @@
-from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
@@ -40,29 +41,25 @@ class OrderCreate(View):
         return render(request, 'orders/order/create.html', context)
 
 
-class AdminOrderDetail(View):
-    @method_decorator(staff_member_required)
+class AdminOrderDetail(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         order = get_object_or_404(Order, id=kwargs.get('order_id'))
         return render(request, 'admin/orders/order/detail.html', {'order': order})
 
 
-class OrderList(View):
-    @method_decorator(staff_member_required)
+class OrderList(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         orders = Order.objects.all()
         return render(request, 'admin/orders/list.html', {'orders': orders})
 
 
-class AdminOrderRemove(View):
-    @method_decorator(staff_member_required)
-    def get(self, request, *args, **kwargs):
-        Order.objects.get(id=kwargs.get('order_id')).delete()
-        return HttpResponseRedirect('/orders/list/')
+class AdminOrderRemove(LoginRequiredMixin, generic.DeleteView):
+    model = Order
+    template_name = 'admin/orders/order/confirm_delete.html'
+    success_url = '/orders/'
 
 
-class AdminOrderUpdate(generic.UpdateView):
+class AdminOrderUpdate(LoginRequiredMixin, generic.UpdateView):
     model = Order
     fields = ['first_name', 'last_name', 'email', 'address', 'postal_code', 'city']
     template_name = 'admin/orders/order/update.html'
-

@@ -16,9 +16,15 @@
         </ul>
         <p>Загалом: ${{ cart.get_total_price }}</p>
     </div>
-    <form action="." method="post" class="order-form">
-        {{ form.as_p }}
-        <p><input type="submit" value="Place order"></p>
+    <form method="post">
         {% csrf_token %}
+        <table class="form form-table">
+            {{ form }}
+            <tr>
+                <td colspan="2">
+                    <button type="submit" class="btn btn-info right">Зробити замовлення</button>
+                </td>
+            </tr>
+        </table>
     </form>
 {% endblock %}

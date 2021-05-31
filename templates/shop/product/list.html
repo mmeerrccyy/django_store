@@ -1,7 +1,7 @@
 {% extends "wrapper.html" %}
 {% load static %}
 {% block title %}
-    {% if category %}{{ category.name }}{% else %}Товари{% endif %}
+    {% if category %}{{ category.name }}{% else %}Усі товари{% endif %}
 {% endblock %}
 {% block content %}
     <div id="sidebar">
@@ -18,8 +18,8 @@
         </ul>
     </div>
     <div id="main" class="product-list">
-        <h1>{% if category %}{{ category.name }}{% else %}Товари{% endif %}</h1>
-        {% for product in products %}
+        <h1>{% if category %}{{ category.name }}{% else %}Усі товари{% endif %}</h1>
+        {% for product in page_obj %}
             <div class="item">
                 <a href="/product{{ product.get_absolute_url }}">
                     <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
@@ -29,4 +29,20 @@
             </div>
         {% endfor %}
     </div>
+    <div class="pagination">
+            <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; На початок</a>
+            <a href="?page={{ page_obj.previous_page_number }}">Попередня</a>
+        {% endif %}
+                <span class="current">
+            Сторінка {{ page_obj.number }} з {{ page_obj.paginator.num_pages }}.
+        </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">Наступна</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">Остання &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
 {% endblock %}
