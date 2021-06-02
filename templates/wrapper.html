@@ -13,6 +13,7 @@
         <a href="{% url 'orders_list' %}">Список замовлень</a>
         {% if request.user.is_superuser %}
             <a href="{% url 'staff_list' %}">Управління стаффом</a>
+            <a href="{% url 'product_create' %}">Додати товар</a>
         {% endif %}
         <a href="{% url 'logout' %}">Вийти</a>
     {% else %}

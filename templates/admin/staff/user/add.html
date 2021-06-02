@@ -1,7 +1,7 @@
 {% extends "wrapper.html" %}
 {% load static %}
 {% block title %}
-    Оновити користувача
+    Додати користувача
 {% endblock %}
 {% block content %}
     <h1>Новий користувач</h1>
@@ -14,8 +14,10 @@
         <p>Доступ до адмін-панелі: {{ form.is_staff }}</p>
         <p>Активний статус: {{ form.is_active }}</p>
         <p>Має всі дозволи: {{ form.is_superuser }}</p>
+        <p>Пароль: {{ form.password }}</p>
+{#        <p>Підтвердіть пароль: {{ form.confirm_password }}</p>#}
         <p>
-             <button type="submit" class="btn btn-info right">Оновити</button>
+             <button type="submit" class="btn btn-info right">Додати</button>
         </p>
     </form>
 {% endblock %}

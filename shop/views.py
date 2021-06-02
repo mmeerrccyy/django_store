@@ -1,10 +1,12 @@
-from django.shortcuts import render, get_object_or_404
-from django.views.generic.base import View
 from django.core.paginator import Paginator
-from django.views.generic import ListView
+from django.shortcuts import render, get_object_or_404
+from django.views import generic
+from django.views.generic.base import View
 
 from cart.forms import CartAddProductForm
+from .forms import ProductAddForm
 from .models import Category, Product
+from staff.mixins import SuperuserRequiredMixin
 
 
 # Create your views here.
@@ -54,3 +56,10 @@ class ProductDetail(View):
             'cart_product_form': cart_product_form
         }
         return render(request, 'shop/product/detail.html', context)
+
+
+class ProductCreate(SuperuserRequiredMixin, generic.CreateView):
+    model = Product
+    template_name = 'shop/product/add.html'
+    form_class = ProductAddForm
+    success_url = '/'
