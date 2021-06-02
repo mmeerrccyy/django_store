@@ -60,6 +60,19 @@ class ProductDetail(View):
 
 class ProductCreate(SuperuserRequiredMixin, generic.CreateView):
     model = Product
-    template_name = 'shop/product/add.html'
+    template_name = 'admin/shop/product/add.html'
     form_class = ProductAddForm
+    success_url = '/'
+
+
+class ProductUpdate(SuperuserRequiredMixin, generic.UpdateView):
+    model = Product
+    fields = ['category', 'name', 'slug', 'image', 'description', 'price', 'stock', 'available']
+    template_name = 'admin/shop/product/update.html'
+    success_url = '/'
+
+
+class ProductDelete(SuperuserRequiredMixin, generic.DeleteView):
+    model = Product
+    template_name = 'admin/shop/product/confirm_delete.html'
     success_url = '/'

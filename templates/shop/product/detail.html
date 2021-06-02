@@ -4,6 +4,14 @@
     {{ product.category }} - {{ product.name }}
 {% endblock %}
 {% block content %}
+    {% if user.is_authenticated %}
+        <a href="{% url 'product_update' pk=product.id %}">
+            <button>Редагувати товар</button>
+        </a> <br>
+        <a href="{% url 'product_delete' pk=product.id %}">
+            <button>Видалити товар</button>
+        </a>
+    {% endif %}
     <div class="product-detail">
         <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
         <h1>{{ product.name }}</h1>
