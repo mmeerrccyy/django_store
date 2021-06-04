@@ -6,9 +6,12 @@ from . import views
 
 urlpatterns = [
     path('', views.ProductList.as_view(), name='product_list'),
+    path('category-add/', views.CategoryAdd.as_view(), name='category_add'),
+    path('category-update/<int:pk>/', views.CategoryUpdate.as_view(), name='category_update'),
+    path('category-delete/<int:pk>/', views.CategoryDelete.as_view(), name='category_delete'),
     path('category/<str:category_slug>/', views.ProductCategory.as_view(), name='products_list_by_category'),
     path('product/<str:category_slug>/<str:slug>/', views.ProductDetail.as_view(), name='product_detail'),
-    path('product/add/', views.ProductCreate.as_view(), name='product_create'),
+    path('product-add/', views.ProductCreate.as_view(), name='product_create'),
     path('update/<int:pk>/', views.ProductUpdate.as_view(), name='product_update'),
     path('delete/<int:pk>/', views.ProductDelete.as_view(), name='product_delete'),
     path('archive/', views.ProductArchiveList.as_view(), name='product_archive'),

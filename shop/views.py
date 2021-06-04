@@ -5,7 +5,7 @@ from django.views import generic
 from django.views.generic.base import View
 
 from cart.forms import CartAddProductForm
-from .forms import ProductAddForm
+from .forms import ProductAddForm, CategoryAddForm
 from .models import Category, Product
 
 
@@ -123,5 +123,24 @@ class ProductArchiveCategory(LoginRequiredMixin, View):
             'categories': categories,
             'page_obj': page_obj
         }
-        print(categories)
         return render(request, 'admin/shop/list_archive.html', context)
+
+
+class CategoryAdd(LoginRequiredMixin, generic.CreateView):
+    model = Category
+    template_name = 'admin/shop/category/add.html'
+    form_class = CategoryAddForm
+    success_url = '/'
+
+
+class CategoryDelete(LoginRequiredMixin, generic.DeleteView):
+    model = Category
+    template_name = 'admin/shop/category/confirm_delete.html'
+    success_url = '/'
+
+
+class CategoryUpdate(LoginRequiredMixin, generic.UpdateView):
+    model = Category
+    template_name = 'admin/shop/category/update.html'
+    fields = ['name', 'slug']
+    success_url = '/'

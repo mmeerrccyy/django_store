@@ -1,0 +1,16 @@
+{% extends "wrapper.html" %}
+{% load static %}
+{% block title %}
+    Додати категорію
+{% endblock %}
+{% block content %}
+    <h1>Нова категорія</h1>
+    <form method="post">
+        {% csrf_token %}
+        <p>Назва категорії: {{ form.name }}</p>
+        <p>Посилання: {{ form.slug }}</p>
+        <p>
+             <button type="submit" class="btn btn-info right">Додати</button>
+        </p>
+    </form>
+{% endblock %}

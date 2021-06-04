@@ -24,8 +24,12 @@
                 <div class="item">
                     <a href="/archive{{ product.get_absolute_url }}">
                         <img src="
-
-                                {% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
+                                {% if product.image %}
+                                    {{ product.image.url }}
+                                {% else %}
+                                    {% static "img/no_image.png" %}
+                                {% endif %}"
+                             style="width: 150px; height: 150px;">
                     </a>
                     <a href="/archive{{ product.get_absolute_url }}">{{ product.name }}</a><br>
                     ${{ product.price }}
