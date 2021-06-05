@@ -1,5 +1,7 @@
 {% extends "wrapper.html" %}
 {% load static %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
 {% block title %}
     Додати користувача
 {% endblock %}
@@ -15,9 +17,10 @@
         <p>Активний статус: {{ form.is_active }}</p>
         <p>Має всі дозволи: {{ form.is_superuser }}</p>
         <p>Пароль: {{ form.password }}</p>
-{#        <p>Підтвердіть пароль: {{ form.confirm_password }}</p>#}
+        <p>Підтвердіть пароль: {{ form.confirm_password }}</p>
         <p>
              <button type="submit" class="btn btn-info right">Додати</button>
         </p>
     </form>
+    <script src="{% static 'js/UsernameValidator.js' %}"></script>
 {% endblock %}
