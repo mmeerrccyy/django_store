@@ -1,0 +1,46 @@
+a:hover {
+    text-decoration: none;
+}
+#sidebar {
+    width: 220px;
+    height: calc(100vh - 100px);
+    margin-right: 30px;
+    background-color: #fff;
+    padding: 10px;
+    border-right: 1px solid #c2c2c2;
+    float: left;
+}
+#sidebar h3 {
+    display: inline-block;
+}
+.categories, .selected {
+    margin-bottom: 5px;
+}
+.add-category {
+    width: 25px;
+    background-color: #05c46b;
+    border: none;
+    border-radius: 50px 50px;
+    color: #fff;
+    margin-left: 10px;
+}
+.delete-category {
+    width: 25px;
+    background-color: #ff3f34;
+    border: none;
+    border-radius: 50px 50px;
+    color: #fff;
+    margin-left: 5px;
+    float: right;
+}
+.edit-category {
+    width: 25px;
+    background-color: #34ace0;
+    border: none;
+    border-radius: 50px 50px;
+    color: #fff;
+    float: right;
+}
+.product-list {
+    padding: 10px;
+}
