@@ -6,20 +6,24 @@
     Редагувати товар
 {% endblock %}
 {% block content %}
-    <h1>Редагування товару</h1>
-    <form method="post">
-        {% csrf_token %}
-        <p>Категорія: {{ form.category }}</p>
-        <p>Назва товару: {{ form.name }}</p>
-        <p>Посилання: {{ form.slug }}</p>
-        <p>Зображення: {{ form.image }}</p>
-        <p>Опис: {{ form.description }}</p>
-        <p>Ціна: {{ form.price }}</p>
-        <p>Кількість: {{ form.stock }}</p>
-        <p>Видимість: {{ form.available }}</p>
-        <p>
-             <button type="submit" class="btn btn-info right">Редагувати</button>
-        </p>
-    </form>
+    <div class="add-container">
+        <h1>Редагування товару</h1>
+        <div class="add-wares">
+            <form method="post">
+                {% csrf_token %}
+                <p>Категорія: {{ form.category }}</p>
+                <p>Назва товару: {{ form.name }}</p>
+                <p>Посилання: {{ form.slug }}</p>
+                <p>Зображення: {{ form.image }}</p>
+                <p>Опис: {{ form.description }}</p>
+                <p>Ціна: {{ form.price }}</p>
+                <p>Кількість: {{ form.stock }}</p>
+                <p>Видимість: {{ form.available }}</p>
+                <p>
+                    <button type="submit" class="btn btn-info right">Редагувати</button>
+                </p>
+            </form>
+        </div>
+    </div>
     <script src="{% static 'js/SlugValidator.js' %}"></script>
 {% endblock %}

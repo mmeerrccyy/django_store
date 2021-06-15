@@ -1,0 +1,16 @@
+.add-container h1 {
+    text-align: center;
+    margin-top: 15px;
+}
+.add-wares {
+    display: flex;
+    justify-content: center;
+    width: 700px;
+    margin: auto;
+    padding-top: 50px;
+    background-color: #ebe8e8;
+    border-radius: 50px 50px;
+}
+textarea {
+    resize: none;
+}

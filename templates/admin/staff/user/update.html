@@ -4,18 +4,22 @@
     Оновити користувача
 {% endblock %}
 {% block content %}
-    <h1>Новий користувач</h1>
-    <form method="post">
-        {% csrf_token %}
-        <p>Нікнейм користувача: {{ form.username }}</p>
-        <p>Ім'я користувача: {{ form.first_name }}</p>
-        <p>Прізвище користувача: {{ form.last_name }}</p>
-        <p>E-Mail користувача: {{ form.email }}</p>
-        <p>Доступ до адмін-панелі: {{ form.is_staff }}</p>
-        <p>Активний статус: {{ form.is_active }}</p>
-        <p>Має всі дозволи: {{ form.is_superuser }}</p>
-        <p>
-             <button type="submit" class="btn btn-info right">Оновити</button>
-        </p>
-    </form>
+    <div class="add-container">
+        <h1>Новий користувач</h1>
+        <div class="add-wares">
+            <form method="post">
+                {% csrf_token %}
+                <p>Нікнейм користувача: {{ form.username }}</p>
+                <p>Ім'я користувача: {{ form.first_name }}</p>
+                <p>Прізвище користувача: {{ form.last_name }}</p>
+                <p>E-Mail користувача: {{ form.email }}</p>
+                <p>Доступ до адмін-панелі: {{ form.is_staff }}</p>
+                <p>Активний статус: {{ form.is_active }}</p>
+                <p>Має всі дозволи: {{ form.is_superuser }}</p>
+                <p>
+                    <button type="submit" class="btn btn-info right">Оновити</button>
+                </p>
+            </form>
+        </div>
+    </div>
 {% endblock %}

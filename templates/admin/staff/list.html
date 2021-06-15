@@ -6,50 +6,27 @@
 {% block content %}
     <div id="main">
         <div class="ui-menu-item">
+            <h3>Користувачі</h3>
             <a href="{% url 'staff_create' %}">
-                <button>Додати користувача</button>
+                <button class="add-category">+</button>
             </a>
         </div>
         <div class="staff-list">
             {% for staff_user in page_obj %}
-                <div class="item">
-                    <h3>{{ staff_user.username }}</h3>
-                    {% if staff_user.is_superuser %}
-                        <p>Користувач є адміністратором.</p>
-                    {% endif %}
-                    {% if staff_user.first_name %}
-                        <p>{{ staff_user.first_name }}</p>
-                    {% else %}
-                        <p>Ім'я не задано.</p>
-                    {% endif %}
-                    {% if staff_user.last_name %}
-                        <p>{{ staff_user.last_name }}</p>
-                    {% else %}
-                        <p>Прізвища не задано.</p>
-                    {% endif %}
-                    {% if staff_user.email %}
-                        <p>{{ staff_user.last_name }}</p>
-                    {% else %}
-                        <p>E-Mail не вказано.</p>
-                    {% endif %}
-                    {% if staff_user.is_active %}
-                        <p>Статус користувача: активний.</p>
-                    {% else %}
-                        <p>Статус користувача: неактивний.</p>
-                    {% endif %}
-                    {% if staff_user.last_login %}
-                        <p>Останній вхід: {{ staff_user.last_login }}</p>
-                    {% else %}
-                        <p>Користувач ще не входив в аккаунт.</p>
-                    {% endif %}
-                    <p>Дата реєстрації: {{ staff_user.date_joined }}</p>
-                    <a href="{% url 'staff_update' pk=staff_user.id %}" class="btn">
-                        <button>Редагувати користувача</button>
-                    </a><br>
-                    <a href="{% url 'staff_delete' pk=staff_user.id %}" class="btn-danger">
-                        <button>Видалити користувача</button>
-                    </a>
-                </div>
+                <table class="users-table" border="1">
+                    <tr>
+                        <td><p><b>{{ staff_user.username }}</b></p></td>
+                        <td>{% if staff_user.is_superuser %}<p>Користувач є адміністратором.</p>{% else %}<p>Користувач не є адміністратором.</p>{% endif %}</td>
+                        <td>{% if staff_user.first_name %}<p>{{ staff_user.first_name }}</p>{% else %}<p>Ім'я не задано.</p>{% endif %}</td>
+                        <td>{% if staff_user.last_name %}<p>{{ staff_user.last_name }}</p>{% else %}<p>Прізвища не задано.</p> {% endif %}</td>
+                        <td>{% if staff_user.email %}<p>{{ staff_user.last_name }}</p>{% else %} <p>E-Mail не вказано.</p>{% endif %}</td>
+                        <td>{% if staff_user.is_active %}<p>Статус користувача: активний.</p>{% else %}<p>Статус користувача: неактивний.</p>{% endif %}</td>
+                        <td>{% if staff_user.last_login %}  <p>Останній вхід: {{ staff_user.last_login }}</p>{% else %}<p>Користувач ще не входив в аккаунт.</p>{% endif %}</td>
+                        <td><p>Дата реєстрації: {{ staff_user.date_joined }}</p></td>
+                        <td><a href="{% url 'staff_update' pk=staff_user.id %}" class="btn"><button class="edit-btn">Редагувати</button></a></td>
+                        <td><a href="{% url 'staff_delete' pk=staff_user.id %}" class="btn-danger"><button class="delete-btn">Видалити</button></a></td>
+                    </tr>
+                </table>
             {% endfor %}
         </div>
         <div class="pagination">

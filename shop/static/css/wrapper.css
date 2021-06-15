@@ -36,6 +36,7 @@ body {
 .logo {
     width: 200px;
     margin-right: 40px;
+    padding: 20px;
 }
 .logo a {
     font-size: 40px;
