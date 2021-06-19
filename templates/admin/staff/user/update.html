@@ -9,13 +9,36 @@
         <div class="add-wares">
             <form method="post">
                 {% csrf_token %}
-                <p>Нікнейм користувача: {{ form.username }}</p>
-                <p>Ім'я користувача: {{ form.first_name }}</p>
-                <p>Прізвище користувача: {{ form.last_name }}</p>
-                <p>E-Mail користувача: {{ form.email }}</p>
-                <p>Доступ до адмін-панелі: {{ form.is_staff }}</p>
-                <p>Активний статус: {{ form.is_active }}</p>
-                <p>Має всі дозволи: {{ form.is_superuser }}</p>
+                <table class="edit-user-table">
+                    <tr>
+                        <td>Нікнейм користувача:</td>
+                        <td>{{ form.username }}</td>
+                    </tr>
+                    <tr>
+                        <td>Ім'я користувача:</td>
+                        <td>{{ form.first_name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Прізвище користувача:</td>
+                        <td>{{ form.last_name }}</td>
+                    </tr>
+                    <tr>
+                        <td>E-Mail користувача:</td>
+                        <td>{{ form.email }}</td>
+                    </tr>
+                    <tr>
+                        <td>Доступ до адмін-панелі:</td>
+                        <td>{{ form.is_staff }}</td>
+                    </tr>
+                    <tr>
+                        <td>Активний статус:</td>
+                        <td>{{ form.is_active }}</td>
+                    </tr>
+                    <tr>
+                        <td>Має всі дозволи:</td>
+                        <td>{{ form.is_superuser }}</td>
+                    </tr>
+                </table>
                 <p>
                     <button type="submit" class="btn btn-info right">Оновити</button>
                 </p>

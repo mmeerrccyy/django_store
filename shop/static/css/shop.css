@@ -75,16 +75,15 @@ a:hover {
     right: 40px;
 }
 
-/*detail.html*/
+/*Products*/
 .product-detail, .confirm-delete {
     display: flex;
     justify-content: center;
     width: 700px;
-    height: 500px;
     margin: 5% auto;
-    padding-top: 50px;
-    background-color: #ebe8e8;
-    border-radius: 50px 50px;
+    padding-top: 25px;
+    background-color: #f6e58d;
+    border-radius: 25px 25px;
 
 }
 .confirm-delete p {
@@ -99,7 +98,7 @@ a:hover {
     height: 40px;
     margin-left: 10px;
 }
-.edit-btn, .delete-btn, .confirm-btn, .add-user {
+.edit-btn, .delete-btn, .confirm-btn, .add-user, .detail-btn {
     border: none;
     color: #fff;
     width: 160px;
@@ -107,7 +106,7 @@ a:hover {
     border-radius: 10px;
     margin: 15px 0;
 }
-.edit-btn {
+.edit-btn, .detail-btn {
     background-color: #34ACE0;
 }
 .delete-btn {
@@ -120,13 +119,14 @@ a:hover {
     margin: 0 50px;
 }
 
-/*Users*/
-.users-table {
+/*Users, Orders*/
+.users-table, .orders-table {
     width: 100%;
     text-align: center;
     margin: 20px 0;
 }
-.users-table td {
+.users-table td,
+.orders-table td {
     width: 170px;
 }
 .ui-menu-item {
@@ -139,6 +139,45 @@ a:hover {
     display: inline-block;
 }
 
+/*Cart*/
+.cart {
+    width: 100%;
+    font-size: 18px;
+    text-align: center;
+}
+.cart img {
+    width: 120px;
+    height: 120px;
+    padding: 5px;
+}
+.text-right {
+    margin: 30px 20px;
+}
+.light, .button {
+    margin-top: 30px;
+    background-color: #33A2B8;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+}
+.light:hover, .button:hover {
+    color: #fff;
+    background-color: #2f91a4;
+}
 
-
-
+/*Orders*/
+.main-order-info {
+    margin: auto;
+}
+.check {
+    display: grid;
+    justify-content: center;
+    width: 700px;
+    margin: auto;
+}
+.check ul {
+    list-style: none;
+}
+.btn-info {
+    margin: 15px 0;
+}

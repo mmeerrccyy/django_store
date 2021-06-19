@@ -47,7 +47,7 @@ body {
 .header-login {
     color: #8e7208;
     font-size: 20px;
-    margin-left: 80px;
+    margin-left: 50px;
 }
 .search-form {
     margin-left: 90px;
@@ -69,4 +69,9 @@ body {
     background-color: #0652DD;
     color: #fff;
     border-radius: 0 50px 50px 0;
+}
+.is-invalid {
+    border: 2px solid #eb4d4b;
+    box-shadow: 0 0 5px 1px #eb4d4b;
+    background-color: #fdc0c0;
 }

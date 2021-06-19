@@ -24,7 +24,8 @@
         {% if request.user.is_superuser %}
             <a class="header-navigation" href="{% url 'staff_list' %}">Управління стаффом</a>
         {% endif %}
-            <a class="header-login" href="{% url 'logout' %}">Вийти <i class="fas fa-sign-out-alt"></i></a>
+            <a class="header-login" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i></a>
+            <a class="header-login" href="{% url 'cart_detail' %}"><i class="fad fa-shopping-cart"></i></a>
         {% else %}
             <a class="header-login" href="{% url 'login' %}">Я - продавець</a>
         {% endif %}

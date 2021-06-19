@@ -6,15 +6,17 @@
     Оновити замовлення
 {% endblock %}
 {% block content %}
-    <form method="post">
-        {% csrf_token %}
-        <table class="form form-table">
-            {{ form }}
-            <tr>
-                <td colspan="2">
-                    <button type="submit" class="btn btn-info right">Оновити</button>
-                </td>
-            </tr>
-        </table>
-    </form>
+    <div style="margin-top: 5%;" class="add-wares">
+        <form method="post">
+            {% csrf_token %}
+            <table class="check-table">
+                {{ form }}
+                <tr>
+                    <td colspan="2">
+                        <button type="submit" class="btn btn-info">Зробити замовлення</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
 {% endblock %}

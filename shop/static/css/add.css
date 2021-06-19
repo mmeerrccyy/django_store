@@ -2,14 +2,29 @@
     text-align: center;
     margin-top: 15px;
 }
-.add-wares {
+.add-wares, .edit-wares {
     display: flex;
     justify-content: center;
     width: 700px;
     margin: auto;
-    padding-top: 50px;
-    background-color: #ebe8e8;
-    border-radius: 50px 50px;
+    padding-top: 20px;
+    background-color: #f6e58d;
+    border-radius: 25px 25px;
+}
+input {
+    outline: none;
+    padding: 1px 5px;
+}
+.wares-table td,
+.edit-wares-table td,
+.edit-category-table td,
+.new-category-table td,
+.check-table td,
+.check-table th,
+.new-user-table td,
+.edit-user-table td {
+    width: 125px;
+    padding: 3px;
 }
 textarea {
     resize: none;
