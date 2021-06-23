@@ -44,17 +44,17 @@ python manage.py createsuperuser
 ```
 And follow the instruction
 
-#### Running with RabbitMQ and celery
+#### Running with RabbitMQ and Celery
 
 Download and install from [official website](https://www.rabbitmq.com/)
 
-Run RabbitMQ Server
+##### Run RabbitMQ Server
 
 ```bash
 rabbitmq-server
 ```
 
-Run Celery
+##### Run Celery
 
 **!!!You must be on venv!!!**
 
@@ -62,7 +62,7 @@ Run Celery
 celery -A eltex_ua worker -l info
 ```
 
-(Optional) Run Flower
+##### (Optional) Run Flower
 
 **!!!You must be on venv!!!**
 
