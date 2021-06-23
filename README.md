@@ -14,6 +14,7 @@ There is:
   * RabbitMQ
   * Celery
   * SQLite
+  * Bootstrap
  
 ### How to run
 
