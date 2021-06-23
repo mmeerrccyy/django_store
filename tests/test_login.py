@@ -2,10 +2,10 @@ from selenium import webdriver
 
 driver = webdriver.Firefox()
 
-driver.get('http://127.0.0.1:8000')
 
-
-def login(login, password):
+def login(driver, login="selenium_test_user", password="selenium_test_user", no_url=True):
+    if no_url:
+        driver.get('http://127.0.0.1:8000')
     driver.implicitly_wait(10)
 
     driver.find_element_by_class_name('header-login').click()
@@ -18,4 +18,4 @@ def login(login, password):
 
 
 if __name__ == '__main__':
-    login('selenium_test_user', 'selenium_test_user')
+    login(driver=driver)

@@ -49,7 +49,6 @@ class ProductCategory(View):
 class ProductDetail(View):
 
     def get(self, request, *args, **kwargs):
-        print(request, args, kwargs)
         product = get_object_or_404(Product, slug=kwargs.get('slug'), available=True)
         cart_product_form = CartAddProductForm()
         context = {

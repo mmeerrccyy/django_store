@@ -28,6 +28,7 @@
             <a class="header-login" href="{% url 'cart_detail' %}"><i class="fad fa-shopping-cart"></i></a>
         {% else %}
             <a class="header-login" href="{% url 'login' %}">Я - продавець</a>
+            <a class="header-login" href="{% url 'cart_detail' %}"><i class="fad fa-shopping-cart"></i></a>
         {% endif %}
     </div>
     <form class="search-form" action="{% url 'search_results' %}" method="get">
