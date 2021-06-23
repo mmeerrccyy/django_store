@@ -1,23 +1,59 @@
 {% extends "wrapper.html" %}
 {% load static %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
 {% block title %}
     Додати користувача
 {% endblock %}
 {% block content %}
-    <h1>Новий користувач</h1>
-    <form method="post">
-        {% csrf_token %}
-        <p>Нікнейм користувача: {{ form.username }}</p>
-        <p>Ім'я користувача: {{ form.first_name }}</p>
-        <p>Прізвище користувача: {{ form.last_name }}</p>
-        <p>E-Mail користувача: {{ form.email }}</p>
-        <p>Доступ до адмін-панелі: {{ form.is_staff }}</p>
-        <p>Активний статус: {{ form.is_active }}</p>
-        <p>Має всі дозволи: {{ form.is_superuser }}</p>
-        <p>Пароль: {{ form.password }}</p>
-{#        <p>Підтвердіть пароль: {{ form.confirm_password }}</p>#}
-        <p>
-             <button type="submit" class="btn btn-info right">Додати</button>
-        </p>
-    </form>
+    <div class="add-container">
+        <h1>Новий користувач</h1>
+        <div class="add-wares">
+            <form method="post">
+                {% csrf_token %}
+                <table class="new-user-table">
+                    <tr>
+                        <td>Нікнейм користувача:</td>
+                        <td>{{ form.username }}</td>
+                    </tr>
+                    <tr>
+                        <td>Ім'я користувача:</td>
+                        <td>{{ form.first_name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Прізвище користувача:</td>
+                        <td>{{ form.last_name }}</td>
+                    </tr>
+                    <tr>
+                        <td>E-Mail користувача:</td>
+                        <td>{{ form.email }}</td>
+                    </tr>
+                    <tr>
+                        <td>Доступ до адмін-панелі:</td>
+                        <td>{{ form.is_staff }}</td>
+                    </tr>
+                    <tr>
+                        <td>Активний статус:</td>
+                        <td>{{ form.is_active }}</td>
+                    </tr>
+                    <tr>
+                        <td>Має всі дозволи:</td>
+                        <td>{{ form.is_superuser }}</td>
+                    </tr>
+                    <tr>
+                        <td>Пароль:</td>
+                        <td>{{ form.password }}</td>
+                    </tr>
+                    <tr>
+                        <td>Підтвердіть пароль:</td>
+                        <td>{{ form.confirm_password }}</td>
+                    </tr>
+                </table>
+                <p>
+                    <button type="submit" class="btn btn-info right">Додати</button>
+                </p>
+            </form>
+        </div>
+    </div>
+    <script src="{% static 'js/UsernameValidator.js' %}"></script>
 {% endblock %}

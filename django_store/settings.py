@@ -35,11 +35,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'shop',
     'cart',
     'orders',
     'account',
-    'search'
+    'search',
+    'api_server'
 ]
 
 MIDDLEWARE = [
@@ -142,3 +144,12 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 CELERY_TIMEZONE = "Europe/Kiev"
 CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+STATICFILES_DIRS = [
+    BASE_DIR / "staff/static",
+    BASE_DIR / "shop/static",
+]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

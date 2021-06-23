@@ -3,47 +3,63 @@
 <html lang="ua">
 <head>
     <meta charset="utf-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <title>{% block title %}My shop{% endblock %}</title>
-    <link href="#" rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="{% static 'css/wrapper.css' %}">
+    <link rel="stylesheet" href="{% static 'css/shop.css' %}">
+    <link rel="stylesheet" href="{% static 'css/add.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
 </head>
 <body>
 <div id="header">
-    <a href="/" class="logo">ELTEX.UA</a>
-    {% if request.user.is_authenticated %}
-        <a href="{% url 'orders_list' %}">Список замовлень</a>
-        <a href="{% url 'product_create' %}">Додати товар</a>
-        <a href="{% url 'product_archive' %}">Архівовані товари</a>
+    <div class="logo">
+        <a href="/">ELTEX.UA</a>
+    </div>
+    <div class="header-content">
+        {% if request.user.is_authenticated %}
+            <a class="header-navigation" href="{% url 'orders_list' %}">Список замовлень</a>
+            <a class="header-navigation" href="{% url 'product_create' %}">Додати товар</a>
+            <a class="header-navigation" href="{% url 'product_archive' %}">Архівовані товари</a>
         {% if request.user.is_superuser %}
-            <a href="{% url 'staff_list' %}">Управління стаффом</a>
+            <a class="header-navigation" href="{% url 'staff_list' %}">Управління стаффом</a>
         {% endif %}
-        <a href="{% url 'logout' %}">Вийти</a>
-    {% else %}
-        <a href="{% url 'login' %}">Я - продавець</a>
-    {% endif %}
-    <form action="{% url 'search_results' %}" method="get">
-        <label>
-            <input name="q" type="text" placeholder="Пошук...">
-        </label>
+            <a class="header-login" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i></a>
+            <a class="header-login" href="{% url 'cart_detail' %}"><i class="fad fa-shopping-cart"></i></a>
+        {% else %}
+            <a class="header-login" href="{% url 'login' %}">Я - продавець</a>
+            <a class="header-login" href="{% url 'cart_detail' %}"><i class="fad fa-shopping-cart"></i></a>
+        {% endif %}
+    </div>
+    <form class="search-form" action="{% url 'search_results' %}" method="get">
+        <input name="q" type="text" placeholder="Пошук...">
         <button type="submit">Шукати</button>
     </form>
 </div>
-<div id="subheader">
-    <div class="cart">
-        {% with total_items=cart|length %}
-            {% if cart|length > 0 %}
-                Ваша корзина:
-                <a href="{% url "cart_detail" %}">
-                    {{ total_items }} товарів, загальна ціна ${{ cart.get_total_price }}
-                </a>
-            {% else %}
-                Ваша корзина пуста.
-            {% endif %}
-        {% endwith %}
-    </div>
-</div>
+{#<div id="subheader">#}
+{#    <div class="cart">#}
+{#        {% with total_items=cart|length %}#}
+{#            {% if cart|length > 0 %}#}
+{#                Ваша корзина:#}
+{#                <a href="{% url "cart_detail" %}">#}
+{#                    {{ total_items }} товарів, загальна ціна ${{ cart.get_total_price }}#}
+{#                </a>#}
+{#            {% else %}#}
+{#                Ваша корзина пуста.#}
+{#            {% endif %}#}
+{#        {% endwith %}#}
+{#    </div>#}
+{#</div>#}
 <div id="content">
     {% block content %}
     {% endblock %}
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </body>
 </html>

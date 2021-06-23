@@ -4,8 +4,8 @@
     Корзина
 {% endblock %}
 {% block content %}
-    <h1>Ваша Корзина</h1>
-    <table class="cart">
+    <h3 style="text-align: center; margin: 20px;">Ваша Корзина</h3>
+    <table class="cart" border="1">
         <thead>
         <tr>
             <th>Зображення</th>
@@ -22,12 +22,7 @@
                 <tr>
                     <td>
                         <a href="/product{{ product.get_absolute_url }}">
-                            <img src="
-                                {% if product.image %}
-                                    {{ product.image.url }}
-                                {% else %}
-                                    {% static "img/no_image.png" %}
-                                {% endif %}">
+                            <img src="{% if product.image %}{{ product.image.url }}  {% else %} {% static "img/no_image.png" %}{% endif %}">
                         </a>
                     </td>
                     <td>{{ product.name }}</td>

@@ -16,7 +16,7 @@ class ProductList(View):
     def get(self, request, *args, **kwargs):
         categories = Category.objects.all()
         products = Product.objects.filter(available=True)
-        paginator = Paginator(products, 2)
+        paginator = Paginator(products, 10)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
         context = {
@@ -34,7 +34,7 @@ class ProductCategory(View):
         products = Product.objects.filter(available=True)
         category = get_object_or_404(Category, slug=kwargs.get('category_slug'))
         products = products.filter(category=category)
-        paginator = Paginator(products, 2)
+        paginator = Paginator(products, 10)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
         context = {
@@ -49,7 +49,6 @@ class ProductCategory(View):
 class ProductDetail(View):
 
     def get(self, request, *args, **kwargs):
-        print(request, args, kwargs)
         product = get_object_or_404(Product, slug=kwargs.get('slug'), available=True)
         cart_product_form = CartAddProductForm()
         context = {
@@ -84,7 +83,7 @@ class ProductArchiveList(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         categories = Category.objects.all()
         products = Product.objects.filter(available=False)
-        paginator = Paginator(products, 2)
+        paginator = Paginator(products, 10)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
         context = {
@@ -114,7 +113,7 @@ class ProductArchiveCategory(LoginRequiredMixin, View):
         products = Product.objects.filter(available=False)
         category = get_object_or_404(Category, slug=kwargs.get('category_slug'))
         products = products.filter(category=category)
-        paginator = Paginator(products, 2)
+        paginator = Paginator(products, 10)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
         context = {

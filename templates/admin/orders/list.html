@@ -4,25 +4,21 @@
     Замовлення
 {% endblock %}
 {% block content %}
-    <div id="main" class="product-list">
+    <div id="main">
         {% for order in orders %}
-            <div class="item">
-                <h3>Номер замовлення: {{ order.id }}</h3>
-                <p>Ім'я замовника: {{ order.first_name }} {{ order.last_name }}</p>
-                <p>Адреса: {{ order.address }}</p>
-                <p>Поштовий індекс: {{ order.postal_code }}</p>
-                <p>E-mail: {{ order.email }}</p>
-                <p>Сума: ${{ order.get_total_cost }}</p>
-                <a href="{% url 'admin_order_detail' order_id=order.id %}">
-                    <button>Деталі</button>
-                </a><br>
-                <a href="{% url 'admin_order_remove' pk=order.id %}" class="btn-danger">
-                    <button>Видалити</button>
-                </a><br>
-                <a href="{% url 'admin_order_update' pk=order.id %}" class="btn-danger">
-                    <button>Редагувати</button>
-                </a>
-            </div>
+            <table class="orders-table" border="1">
+                <tr>
+                    <td><p><b>{{ order.id }}</b></p></td>
+                    <td><p>Ім'я замовника: {{ order.first_name }} {{ order.last_name }}</p></td>
+                    <td><p>Адреса: {{ order.address }}</p></td>
+                    <td><p>Поштовий індекс: {{ order.postal_code }}</p></td>
+                    <td><p>E-mail: {{ order.email }}</p></td>
+                    <td><p>Сума: ${{ order.get_total_cost }}</p></td>
+                    <td><a href="{% url 'admin_order_detail' order_id=order.id %}"><button class="detail-btn">Деталі</button></a></td>
+                    <td><a href="{% url 'admin_order_remove' pk=order.id %}"><button class="delete-btn">Видалити</button></a></td>
+                    <td><a href="{% url 'admin_order_update' pk=order.id %}"><button class="edit-btn">Редагувати</button></a></td>
+                </tr>
+            </table>
         {% endfor %}
     </div>
 {% endblock %}
