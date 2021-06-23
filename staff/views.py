@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.shortcuts import redirect
 from django.views import generic
 from .forms import RegisterForm
 
@@ -8,7 +9,7 @@ from staff.mixins import SuperuserRequiredMixin
 
 class StaffView(SuperuserRequiredMixin, generic.ListView):
     model = User
-    paginate_by = 2
+    paginate_by = 10
     template_name = 'admin/staff/list.html'
 
 
@@ -30,3 +31,9 @@ class StaffCreate(SuperuserRequiredMixin, generic.CreateView):
     model = User
     template_name = 'admin/staff/user/add.html'
     success_url = '/staff/'
+
+    def form_valid(self, form):
+        new_user = form.save(commit=False)
+        new_user.set_password(form.cleaned_data['password'])
+        new_user.save()
+        return redirect(self.success_url)
