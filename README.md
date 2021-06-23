@@ -1,5 +1,4 @@
 ## Async Django store
-=====================
 
 This is online shop ELTEX.UA 
 
@@ -26,7 +25,6 @@ git clone https://github.com/mmeerrccyy/eltexua_async.git
 ```
 
 #### Running
-=============
 
 ```bash
 cd eltexua_async
@@ -38,9 +36,8 @@ python manage.py migrate
 ```
 
 #### Create super user
-=======================
 
-**!!!You must be on venv!!!**
+
 
 ```bash
 python manage.py createsuperuser
@@ -59,11 +56,15 @@ rabbitmq-server
 
 Run Celery
 
+**!!!You must be on venv!!!**
+
 ```bash
 celery -A eltex_ua worker -l info
 ```
 
 (Optional) Run Flower
+
+**!!!You must be on venv!!!**
 
 ```bash
 celery -A eltex_ua flower
