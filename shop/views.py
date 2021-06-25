@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from django.views.generic.base import View
 
@@ -63,6 +63,11 @@ class ProductCreate(LoginRequiredMixin, generic.CreateView):
     template_name = 'admin/shop/product/add.html'
     form_class = ProductAddForm
     success_url = '/'
+
+    def form_valid(self, form):
+        post = form.save(commit=False)
+        post.save()
+        return redirect(self.success_url)
 
 
 class ProductUpdate(LoginRequiredMixin, generic.UpdateView):

@@ -9,7 +9,7 @@
     <div class="add-container">
         <h1>Новий товар</h1>
         <div class="add-wares">
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <table class="wares-table">
                     <tr>
